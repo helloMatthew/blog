@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link id="theme" rel="stylesheet" href="style.css" />
+  
   <!-- ^^^ KEEP AS FIRST LINK IN HEAD FOR 0 INDEX REFERENCED BELOW ^^^ -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon-precomposed.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
@@ -14,27 +14,120 @@
   <link rel="manifest" href="/favicon/site.webmanifest" />
   <title>username-matthew - blog</title>
   <link rel='stylesheet' href='https://easycss.github.io/easytypo/index.css' />
-  <link rel='stylesheet' href='https://easycss.github.io/easygrid/index.css' />
+  <style>
+    body{
+      padding: 0 5%;
+    }
+    img{
+      max-width: 100%;
+      margin: 0 5px;
+    }
+    .container{
+      max-width: 340px;
+    }
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      outline: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-bottom: 1px solid red;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      color: black;
+    }
+    @media (min-width: 769px){
+      body{
+        padding: 5%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="container">
-
-  <!-- <div class="row">
-    <div class="col-6"></div>
-    <div class="col-6"></div>
-  </div> -->
-
+<div class="container">
 
 <h1><a href="https://username-matthew.github.io/">username Matthew</a> - blog</h1>
 
-<a href="https://username-matthew.github.io/jelly-bounce/" target="_blank">
-  <img src="https://org.olk1.com/picz/1679591035.png" alt="pixelart">
-</a>
+<div>
+  <button id="toggleButton" onclick="toggleAnimations()">Stop the madness!</button>
+</div>
 
-<img src="https://org.olk1.com/picz/1679611767.gif" alt="pixelart">
-<!--  -->
-<!--  -->
+<div id="root"></div>
+  
 </div><!-- \container -->
+
+<script>
+
+function createImages() {
+  const rootElement = document.getElementById('root');
+
+  const basePath = 'https://mvmpxa.olk1.com/';
+  const imageCount = 15;
+
+  const linkArray = ["https://username-matthew.github.io/jelly-bounce/", "https://username-matthew.github.io/swatches/"]
+  const gifArray = generateImageArray(basePath, 'gif/pxa', '.gif', imageCount);
+  const staticArray = generateImageArray(basePath, 'static/pxa', '.png', imageCount);
+
+  for (let i = 0; i < gifArray.length; i++) {
+    const linkSrc = linkArray[i];
+    const gifSrc = gifArray[i];
+    const staticSrc = staticArray[i];
+
+    const link = document.createElement('a');
+    link.href = linkSrc || "#";
+    link.target = '_blank';
+
+    const img = document.createElement('img');
+    img.src = gifSrc;
+    img.alt = 'Pixel Art';
+    img.animated = 'true';
+
+    link.appendChild(img)
+    rootElement.appendChild(link);
+  }
+}
+
+function generateImageArray(basePath, prefix, extension, count) {
+  const imageArray = [];
+  for (let i = 1; i <= count; i++) {
+    const imageUrl = basePath + prefix + i + extension;
+    imageArray.push(imageUrl);
+  }
+  return imageArray;
+}
+
+function toggleAnimations() {
+  const toggleButtonTxt = document.getElementById('toggleButton');
+  const gifImages = document.getElementsByTagName('img');
+
+  for (let i = 0; i < gifImages.length; i++) {
+    const gif = gifImages[i];
+    const isAnimated = gif.animated;
+
+    if (isAnimated === 'true') {
+      toggleButtonTxt.textContent = 'Start the madness!';
+      const staticImageSrc = gif.src.replace('/gif/', '/static/').replace('.gif', '.png');
+      gif.src = staticImageSrc;
+      gif.animated = 'false';
+    } else {
+      toggleButtonTxt.textContent = 'Stop the madness!';
+      const originalImageSrc = gif.src.replace('/static/', '/gif/').replace('.png', '.gif');
+      gif.src = originalImageSrc;
+      gif.animated = 'true';
+    }
+  }
+
+}
+
+createImages();
+
+
+</script>
 </body>
 </html>
