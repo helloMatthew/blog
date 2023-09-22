@@ -1,1 +1,1 @@
-[Live Site](https://mattheweq.github.io/blog)
+[Live Site](https://mattheweq.com/blog)
