@@ -1,3 +1,12 @@
 [
-
+  {
+    "title": "welcome 2.0",
+    "date": "27.02.2024",
+    "authorLink": "mattheweq.com",
+    "authorName": "@mattheweq",
+    "para": "following the success of push10x we thought, why not dust off the old blog and upgrade to a \"low static\" high performance python based command line system for ultra fast blogging.",
+    "highlightWords": "blog",
+    "paraLinkWord": "low static",
+    "paraLink": "github.com/push10x/push10x.github.io"
+  }
 ]
