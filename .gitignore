@@ -3,4 +3,5 @@ node_modules
 archive/*
 .env
 DEVREADME.md
+DEV2README.md
 notes.js

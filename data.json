@@ -1,5 +1,15 @@
 [
   {
+    "title": "deployment testing",
+    "date": "27.02.2024",
+    "authorLink": "colorui",
+    "authorName": "https://colorui.github.io/",
+    "para": "regardless of how much one might test in development, it isn't until production that practical issues present themselves and require fixing, tweaking or refactoring. this is the joy of the dev deploy lifecycle.",
+    "highlightWords": "production joy",
+    "paraLinkWord": "tweaking",
+    "paraLink": "https://mattheweq.com/flicker-error"
+  },
+  {
     "title": "welcome 2.0",
     "date": "27.02.2024",
     "authorLink": "mattheweq.com",
