@@ -112,8 +112,7 @@ if __name__ == "__main__":
         git_prompt = input("Would you like to add, commit, and push to the Git repository? \n(Press y or enter to quit.): \n")
 
         if git_prompt.lower() == 'y':
-            # commit_message = input("Enter a commit message: ")
-            commit_message = "New post added."
+            commit_message = input("Enter a commit message: ")
             git_add_commit_push(commit_message)
             print("\nGit operations completed successfully. \n\nGreat job!")
         else:
