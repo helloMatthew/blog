@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
+  <!-- ^^^ KEEP AS FIRST LINK IN HEAD FOR 0 INDEX REFERENCED BELOW ^^^ -->
+  <title></title>
+  <link rel='stylesheet' href='https://easycss.github.io/easytypo/index.css' />
+  <style>
+    body{
+      padding: 0 3%;
+    }
+    img{
+      max-width: 100%;
+      margin: 0 5px;
+    }
+    .container{
+      width: 100vw;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      outline: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-bottom: 1px solid red;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      color: black;
+    }
+    @media (min-width: 769px){
+      body{
+        padding: 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<div class="center"><a href="/">&larr; back</a></div>
+
+<h1><a href="https://mattheweq.com">View Showcase Projects</a></h1>
+
+<div>
+  <button id="toggleButton" onclick="toggleAnimations()">Stop the madness!</button>
+</div>
+
+<div id="root"></div>
+  
+</div><!-- \container -->
+
+<script>
+
+function createImages() {
+  const rootElement = document.getElementById('root');
+
+  const basePath = 'https://mvmpxa.olk1.com/';
+  const imageCount = 18;
+
+  const linkArray = ["https://mattheweq.github.io/jelly-bounce/", "https://mattheweq.github.io/swatches/", "https://mattheweq.github.io/page-transitions-2/", "https://dabdabtoot.github.io/", "https://word-count.github.io/", "https://mattheweq.github.io/flicker-error/", "https://mattheweq.github.io/password-generator/", "https://mattheweq.github.io/giant-loading-spinner/", "https://mattheweq.github.io/ui-card-elements", "https://mattheweq.github.io/glowatron", "https://matthewviamusic.com/api/tracks", "https://searchmusic.github.io/", "https://presetloop.com/", "https://matthew-via-music-player.github.io/", "https://expanderapp.github.io/", "https://mvmdiscography.github.io/", "https://mattheweq.github.io/inline-slider/", "https://easycss.github.io/easylayout/example.html"];
+  
+  const gifArray = generateImageArray(basePath, 'gif/pxa', '.gif', imageCount);
+  const staticArray = generateImageArray(basePath, 'static/pxa', '.png', imageCount);
+
+  for (let i = 0; i < gifArray.length; i++) {
+    const linkSrc = linkArray[i];
+    const gifSrc = gifArray[i];
+    const staticSrc = staticArray[i];
+
+    const link = document.createElement('a');
+    link.href = linkSrc || "#";
+    link.target = '_blank';
+
+    const img = document.createElement('img');
+    img.src = gifSrc;
+    img.alt = 'Pixel Art';
+    img.animated = 'true';
+
+    link.appendChild(img)
+    rootElement.appendChild(link);
+  }
+}
+
+function generateImageArray(basePath, prefix, extension, count) {
+  const imageArray = [];
+  for (let i = 1; i <= count; i++) {
+    const imageUrl = basePath + prefix + i + extension;
+    imageArray.push(imageUrl);
+  }
+  return imageArray;
+}
+
+function toggleAnimations() {
+  const toggleButtonTxt = document.getElementById('toggleButton');
+  const gifImages = document.getElementsByTagName('img');
+
+  for (let i = 0; i < gifImages.length; i++) {
+    const gif = gifImages[i];
+    const isAnimated = gif.animated;
+
+    if (isAnimated === 'true') {
+      toggleButtonTxt.textContent = 'Start the madness!';
+      const staticImageSrc = gif.src.replace('/gif/', '/static/').replace('.gif', '.png');
+      gif.src = staticImageSrc;
+      gif.animated = 'false';
+    } else {
+      toggleButtonTxt.textContent = 'Stop the madness!';
+      const originalImageSrc = gif.src.replace('/static/', '/gif/').replace('.png', '.gif');
+      gif.src = originalImageSrc;
+      gif.animated = 'true';
+    }
+  }
+
+}
+
+createImages();
+
+
+</script>
+</body>
+</html>

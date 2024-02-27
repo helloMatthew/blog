@@ -1,3 +1,8 @@
-[Live Site](https://mattheweq.com/blog)
+## blog
+### plus pixel art
 
-![PREVIEW](preview.png)
+[LIVE SITE](https://blog.mattheweq.com)
+
+![ALT:preview](preview.png)
+
+- use `addData.py` to generate content and populate data.json from command line.
