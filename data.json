@@ -2,8 +2,8 @@
   {
     "title": "deployment testing",
     "date": "27.02.2024",
-    "authorLink": "colorui",
-    "authorName": "https://colorui.github.io/",
+    "authorName": "colorui",
+    "authorLink": "https://colorui.github.io/",
     "para": "regardless of how much one might test in development, it isn't until production that practical issues present themselves and require fixing, tweaking or refactoring. this is the joy of the dev deploy lifecycle.",
     "highlightWords": "production joy",
     "paraLinkWord": "tweaking",
@@ -12,8 +12,8 @@
   {
     "title": "welcome 2.0",
     "date": "27.02.2024",
-    "authorLink": "mattheweq.com",
     "authorName": "@mattheweq",
+    "authorLink": "mattheweq.com",
     "para": "following the success of push10x we thought, why not dust off the old blog and upgrade to a low static high performance python based command line system for ultra fast info sharing.",
     "highlightWords": "dust blog",
     "paraLinkWord": "python",
