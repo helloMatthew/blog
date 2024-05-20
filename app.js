@@ -16,14 +16,14 @@ async function fetchData() {
     const response = await fetch('data.json');
     data = await response.json();
     // sort data in recent date order and slice for lazy load
-    return data.sort((a, b) => (b.date > a.date) ? 1 : -1).slice(start, end);
+    return data.sort((a, b) => (b > a) ? 1 : -1).slice(start, end);
   } catch (error) {
     console.error('Error fetching data:', error)
   }
 } 
 
 
-
+// lazy load
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting || entry.intersectionRatio > 0) {
@@ -63,7 +63,7 @@ function loadNextChunk() {
   }, chunkDelay);
 }
 
-
+// add https and filter out alternative prefixes
 function addHttps(x) {
   if (!x.includes("http://") && !x.includes("https://")) {
     return `https://${x}`;
@@ -71,6 +71,8 @@ function addHttps(x) {
     return x.replace(/^http:\/\//, 'https://');
   }
 }
+
+// compile the card UI with data
 function buildCardElements (data) {
   displayElement.innerHTML = '';
 
@@ -111,18 +113,22 @@ function buildCardElements (data) {
       }
       paraSpan = paraSpan || paraHtml;
 
+      const hasAuthor = authorLinkUrlHtml && `<a class="authorLink" href="${authorLinkUrlHtml}" target="_blank">@${truncatedLinkText}</a>`;
+
       // item class is used as a 'hook' but has no style attributes
       content += `<div class="outer item">
         <div class="content">
           <div class="data">
-            <div class="date">
+            
+            <div class="date-title">
               ${dateHtml}
+              <h2 class="title">${titleHtml}</h2>
             </div>
-            <h2 class="title">${titleHtml}</h2>
+            
             <p>${paraSpan}</p>
 
             <div class="link">
-              <a href="${authorLinkUrlHtml}" target="_blank">${truncatedLinkText}</a>
+              ${hasAuthor}
             </div>
           </div>
         </div>
@@ -159,8 +165,8 @@ function buildCardElements (data) {
   // 
 
   // change background page colour
-  let isDarkTheme = false;
-  let isUserToggled = false; // variable to track manual theme toggle
+  let isDarkTheme = true;
+  let isUserToggled = true; // variable to track manual theme toggle
   let themeInterval; // variable to store the interval
   
   const body = document.body;
@@ -168,8 +174,10 @@ function buildCardElements (data) {
   const logo = document.getElementById('logo');
   const outerElements = document.getElementsByClassName('outer');
   const contentElements = document.getElementsByClassName('content');
+  const dataElements = document.getElementsByClassName('data');
   const spanHighightElements = document.getElementsByClassName('highlight');
-  const h2Elements = document.getElementsByClassName('title');
+  const h2TitleElements = document.getElementsByClassName('title');
+  const authorLinkElement = document.getElementsByClassName('authorLink');
 
   themeBtn.addEventListener("click", () => {
     isUserToggled = true; // user toggled the theme manually
@@ -188,8 +196,8 @@ function buildCardElements (data) {
   // const darkThemeBg = "#2f323e";
   const darkThemeBlend = "rgba(0, 0, 0, .1)";
   
-  const lightThemeBg = "#4087f6";
-  const lightThemeBlend = "rgba(0, 64, 86, .2)";
+  const lightThemeBg = "#f1f1e9";
+  const lightThemeBlend = "#f1f1e9";
   
   const yellowHighlightBg = "#fefd00";
   
@@ -202,14 +210,21 @@ function buildCardElements (data) {
       const outer = outerElements[i];
       const content = contentElements[i];
       const highlight = spanHighightElements[i];
-      const h2 = h2Elements[i];
+      const h2 = h2TitleElements[i];
+      const authorLinkCol = authorLinkElement[i];
+      const dataContainer = dataElements[i];
 
       if (outer) {
         outer.style.backgroundColor = isDarkTheme ? lightThemeBg : darkThemeBg;
+        outer.style.color = !isDarkTheme ? lightThemeBg : darkThemeBg;
       }
 
       if (content) {
         content.style.backgroundColor = isDarkTheme ? lightThemeBlend : darkThemeBlend;
+      }
+      
+      if (dataContainer) {
+        dataContainer.style.backgroundColor = isDarkTheme ? "rgba(255, 255, 255, 0.2)" : "transparent";
       }
 
       if (h2) {
@@ -219,7 +234,12 @@ function buildCardElements (data) {
 
       if (highlight) {
         highlight.style.backgroundColor = isDarkTheme ? yellowHighlightBg : "#111";
-        highlight.style.color = isDarkTheme ? "#111" : "#f64056";
+        highlight.style.color = isDarkTheme ? "#f64056" : yellowHighlightBg;
+      }
+      
+
+      if (authorLinkCol) {
+        authorLinkCol.style.color = isDarkTheme ? "#000" : "#fff";
       }
       
     }

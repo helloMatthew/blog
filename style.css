@@ -7,8 +7,8 @@
   --link-font-family: monospace;
   --link-font-size: 18px;
   --link-line-height: 1;
-  --data-link-color: #fff;
-  --data-link-border: #fff;
+  --data-link-color: #F64056;
+  --data-link-border: #F64056;
 }
 
 html{
@@ -110,6 +110,8 @@ h1{
 }
 
 
+
+
 /* data divs */
 .outer {
   position: relative;
@@ -117,58 +119,66 @@ h1{
   margin: 10px auto;
   border-radius: 0%;
   padding: 0px;
-  max-width: 350px;
   height: fit-content;
-  line-height: 2.4rem;
-  color: #F2EEE2;
-  /* background: #f64056; */ /* <-- set in app.js */
+  /* line-height: 2.4rem; */
+  
+  max-width: 720px;
+  /* border: 10px solid red; */
+  
+  /* color: #F2EEE2; */ /* <-- SET IN APP.js */
+  /* background: #f64056; */ /* <-- SET IN APP.js */
 }
 .content{
   position: relative;
   z-index: 10; 
-  transform: skewY(5deg); 
-  /* background: rgba(255, 0, 0, .3); */ /* <-- set in app.js */
+  /* background: rgba(255, 0, 0, .3); */ /* <-- SET IN APP.js */
 }
 .data{
-  padding: 20px;
-  transform: skewY(-5deg); 
+  padding: 0 10px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
-.date{
+.date-title{
+  max-width: 500px;
+  /* margin: 0 auto; */
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  padding-top: 40px;
+  padding-bottom: 25px;
 }
 /* date */
 h3{
-  display: inline-block;
-  background: #eee;
-  padding: 0.25em;
+  background: #fdfdfd;
   color: #123;
+  padding: 4px 4px 4px 20px;
   font: 14px/1 monospace;
-  margin: 0 0 8px;
-  rotate: -2deg;
+  /* transform: skewY(5deg); */
+  height: fit-content;
 }
 /* data title */
 h2{
+  margin-top: 0px;
+  /* transform: skewY(-9deg); */
+  align-self: flex-end;
   width: fit-content;
-  margin: 8px auto 0;
+  margin-left: auto;
+  /* margin: 8px auto 0; */
   padding: 5px;
-  text-align: center;
-  background: #000;
+  /* background: #000; */ /* <-- SET IN APP.js */
   color: white;
   font: 20px/1 monospace;
   text-transform: capitalize;
   line-height: 1.25;
+  box-shadow: 10px 10px 1px #fff;
 }
 /* data paragraph and highlight span */
 p{
   margin-top: 14px;
   font-family: 'Droid Serif', serif;
-  font-size: 1.7rem;
-  /* font-size: 1.25rem; */
+  font-size: 1.2rem;
   line-height: 1.6;
-  /* line-height: 1.55; */
 }
 /* highlight data body text */
 span.highlight {
@@ -176,7 +186,10 @@ span.highlight {
   background: #111; /* <-- set in app.js */
   color: #f64056; /* <-- set in app.js */
 }
+/* author link */
 .link{
+  padding: 0;
+  padding-bottom: 10px;
   display: flex;
   justify-content: flex-end;
 }
@@ -205,14 +218,16 @@ span.highlight {
   /* #searchInput{
     margin: 0 auto 20px
   } */
-  #resultsContainer{
+
+  /* #resultsContainer{
     width: fit-content;
     column-count: 2;
     gap: 10px;
-  }
-  .outer{
+  } */
+
+  /* .outer{
     max-width: 350px;
-  }
+  } */
 }
 
 @media screen and (min-width: 1024px){
@@ -226,38 +241,38 @@ span.highlight {
     margin: 0 auto;
   }
 
-  #resultsContainer{
+  /* #resultsContainer{
     width: fit-content;
     column-count: 3;
     gap: 10px;
-  }
-  .outer{
+  } */
+
+
+  /* .outer{
     max-width: 300px;
-  }
+  } */
 
   p{
-  font-size: 1.25rem;
-  line-height: 1.55;
+  font-size: 22px;
+  line-height: 1.65;
 }
 }
 
 @media screen and (min-width: 1280px) {
   #resultsContainer{
-    column-count: 4;
+    column-count: 1;
   }
-  .outer{
+  /* .outer{
     max-width: 300px;
-  }
+  } */
 }
 
 @media screen and (min-width: 1550px) {
+  
   #resultsContainer{
-    /* column-count: 5; */
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-  }
-  .outer{
-    max-width: 300px;
+    column-count: 1;
+    /* display: grid;
+    grid-template-columns: repeat(5, 1fr); */
   }
 }
 

@@ -1,5 +1,35 @@
 [
   {
+    "title": "i can't believe it",
+    "date": "21.05.2024",
+    "authorName": "",
+    "authorLink": "",
+    "para": "",
+    "highlightWords": "",
+    "paraLinkWord": "",
+    "paraLink": ""
+  },
+  {
+    "title": "tough ombres",
+    "date": "21.05.2024",
+    "authorName": "tek9",
+    "authorLink": "",
+    "para": "i'm already pretty famous",
+    "highlightWords": "",
+    "paraLinkWord": "",
+    "paraLink": ""
+  },
+  {
+    "title": "this is a new blog post",
+    "date": "20.05.2024",
+    "authorName": "sandy",
+    "authorLink": "olk1.com",
+    "para": "so lately i have had the strangest feeling, something about visions in my mind, bla bla, la la, etc and so onnn, in my mind, all the time... so lately i have had the strangest feeling, something about visions in my mind, bla bla, la la, etc and so onnn, in my mind, all the time... so lately i have had the strangest feeling, something about visions in my mind, bla bla, la la, etc and so onnn, in my mind, all the time...",
+    "highlightWords": "strangest",
+    "paraLinkWord": "mind",
+    "paraLink": "mattheweq.com"
+  },
+  {
     "title": "deployment testing",
     "date": "27.02.2024",
     "authorName": "colorui",
@@ -12,7 +42,7 @@
   {
     "title": "welcome 2.0",
     "date": "27.02.2024",
-    "authorName": "@mattheweq",
+    "authorName": "mattheweq",
     "authorLink": "mattheweq.com",
     "para": "following the success of push10x we thought, why not dust off the old blog and upgrade to a low static high performance python based command line system for ultra fast info sharing.",
     "highlightWords": "dust blog",
