@@ -134,36 +134,33 @@ h1{
   /* background: rgba(255, 0, 0, .3); */ /* <-- SET IN APP.js */
 }
 .data{
-  padding: 0 10px;
+  padding: 0px 0px;
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
 }
 
 .date-title{
-  max-width: 500px;
-  /* margin: 0 auto; */
+  /* max-width: 720px; */
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
-  padding-bottom: 25px;
+  align-items: center;
 }
 /* date */
 h3{
   background: #fdfdfd;
   color: #123;
-  padding: 4px 4px 4px 20px;
+  padding: 4px 20px 4px 20px;
   font: 14px/1 monospace;
   /* transform: skewY(5deg); */
   height: fit-content;
+  width: fit-content;
 }
 /* data title */
 h2{
   margin-top: 0px;
   /* transform: skewY(-9deg); */
-  align-self: flex-end;
   width: fit-content;
-  margin-left: auto;
   /* margin: 8px auto 0; */
   padding: 5px;
   /* background: #000; */ /* <-- SET IN APP.js */
@@ -176,6 +173,7 @@ h2{
 /* data paragraph and highlight span */
 p{
   margin-top: 14px;
+  padding: 10px;
   font-family: 'Droid Serif', serif;
   font-size: 1.2rem;
   line-height: 1.6;
@@ -252,6 +250,18 @@ span.highlight {
     max-width: 300px;
   } */
 
+    /* align-items: flex-start; */
+  .date-title{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  h2{
+    rotate: 3deg;
+  }
+  h3{
+    margin-top: 0;
+  }
   p{
   font-size: 22px;
   line-height: 1.65;

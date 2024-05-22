@@ -249,8 +249,11 @@ function buildCardElements (data) {
     // searchInput.style.color = isDarkTheme ? "#111" : "#fff";
     // searchInput.style.boxShadow = !isDarkTheme ? "0 0 0 #fff" : "0px -10px 50px #fff, 0px 0px 0px #fff, 0px 0px 0px #fff";
 
-    logo.style.color = !isDarkTheme ? "#212124" : "#f64056";
-    logo.style.textShadow = !isDarkTheme ? "-7px -1px 1px #f1f1f111, 1px -1px 1px #f1f1f111, 7px 1px 1px #f1f1f111, 1px 1px 1px #f1f1f111" : "-7px -1px 1px #f1f1f1, 1px -1px 1px #f1f1f1, 7px 1px 1px #f1f1f1, 1px 1px 1px #f1f1f1";
+    // logo.style.color = !isDarkTheme ? "#212124" : "#f64056";
+    // logo.style.textShadow = !isDarkTheme ? "-7px -1px 1px #f1f1f111, 1px -1px 1px #f1f1f111, 7px 1px 1px #f1f1f111, 1px 1px 1px #f1f1f111" : "-7px -1px 1px #f1f1f1, 1px -1px 1px #f1f1f1, 7px 1px 1px #f1f1f1, 1px 1px 1px #f1f1f1";
+
+    logo.style.color = !isDarkTheme ? "#f64056" : "#f64056";
+    logo.style.textShadow = !isDarkTheme ? "-7px -1px 1px #f1f1f1, 1px -1px 1px #f1f1f1, 7px 1px 1px #f1f1f1, 1px 1px 1px #f1f1f1" : "-7px -1px 1px #f1f1f1, 1px -1px 1px #f1f1f1, 7px 1px 1px #f1f1f1, 1px 1px 1px #f1f1f1";
 
     const themeIcon = isDarkTheme ? "moon" : "sun";
     updateThemeIcon(themeIcon);
