@@ -115,6 +115,7 @@ function buildCardElements (data) {
       paraSpan = paraSpan || paraHtml;
 
       const hasImage = image ? `<img src="${image}" alt="${titleHtml}" />` : "";
+      const hasImageLink = paraLinkUrlHtml ? `<a href="${paraLinkUrlHtml}" target="_blank">${hasImage}</a>` : `${hasImage}`;
 
       const hasAuthor = authorLinkUrlHtml && `<a class="authorLink" href="${authorLinkUrlHtml}" target="_blank">@${truncatedLinkText}</a>`;
 
@@ -128,7 +129,8 @@ function buildCardElements (data) {
               <h2 class="title">${titleHtml}</h2>
             </div>
             
-            ${hasImage}
+            ${hasImageLink}
+            
             <p class="paraBg">${paraSpan}</p>
 
             <div class="link">
