@@ -41,6 +41,7 @@ background-position:
 img{
   width: 100%;
   height: auto;
+  filter: brightness(1.1) saturate(1.1);
 }
 a{
   display: inline-block;
@@ -91,6 +92,7 @@ h1{
   /* font-size: 140px; */
   text-align: center;
   user-select: none;
+  filter: blur(0.65px);
   /* the following styles are set with js / theme toggle */
   /* color: #212124;  */
   /* text-shadow: -7px -1px 1px #f1f1f111, 1px -1px 1px #f1f1f111, 7px 1px 1px #f1f1f111, 1px 1px 1px #f1f1f111 */
@@ -203,8 +205,8 @@ p{
   margin-top: 14px;
   padding: 10px;
   font-family: 'Droid Serif', serif;
-  font-size: 1.2rem;
-  line-height: 1.6;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.688; /* 27px */
 }
 /* highlight data body text */
 span.highlight {
@@ -294,8 +296,8 @@ span.highlight {
     rotate: -3deg;
   }
   p{
-  font-size: 22px;
-  line-height: 1.65;
+  font-size: 1.125rem;
+  line-height: 1.688;
 }
 }
 
@@ -310,7 +312,9 @@ span.highlight {
 }
 
 @media screen and (min-width: 1550px) {
-  
+  h1{
+    filter: blur(0.85px);
+  }  
   #resultsContainer{
     column-count: 3;
     /* display: grid;
