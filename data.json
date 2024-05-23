@@ -1,6 +1,29 @@
 [
   {
+    "title": "hypervoo magazine",
+    "image": "https://dropzone.olk1.com/uploads/modvoo_2-5.png",
+    "date": "22.05.2024",
+    "authorName": "sandy",
+    "authorLink": "",
+    "para": "lately we've been working on an online magazine which uses ai models exclusively. depending on the LORA the results are remarkable and we have high hopes for the future of this format.",
+    "highlightWords": "LORA",
+    "paraLinkWord": "",
+    "paraLink": ""
+  },
+  {
+    "title": "king gives a fist bump at palace",
+    "image": "https://dropzone.olk1.com/uploads/Screenshot%202024-05-19%20at%2022.29.09.png",
+    "date": "22.05.2024",
+    "authorName": "bumpy",
+    "authorLink": "",
+    "para": "a nation sighs",
+    "highlightWords": "",
+    "paraLinkWord": "",
+    "paraLink": ""
+  },
+  {
     "title": "i can't believe it",
+    "image": "https://dropzone.olk1.com/uploads/Screenshot%202024-05-19%20at%2022.33.06.png",
     "date": "21.05.2024",
     "authorName": "",
     "authorLink": "",
@@ -11,6 +34,7 @@
   },
   {
     "title": "tough ombres",
+    "image": "https://dropzone.olk1.com/uploads/Screenshot%202024-05-19%20at%2017.20.41.png",
     "date": "21.05.2024",
     "authorName": "tek9",
     "authorLink": "",

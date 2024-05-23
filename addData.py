@@ -58,6 +58,7 @@ def create_data():
         else:
             print("\nTitle cannot be empty. Please try again.")
 
+    image = input("Enter the image url: ")
     authorName = input("Enter the authorName: ")
     authorLink = input("Enter an authorLink URL: ")
 
@@ -70,6 +71,7 @@ def create_data():
 
     new_data = {
         'title': title,
+        'image': image,
         'date': date,
         'authorName': authorName,
         'authorLink': authorLink,

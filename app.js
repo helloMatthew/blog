@@ -25,44 +25,44 @@ async function fetchData() {
 
 
 // lazy load
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting || entry.intersectionRatio > 0) {
-      // Load the next chunk of data when the last item is partially visible
-      loadNextChunk();
-    }
-  });
-}, { threshold: peek });
+// const observer = new IntersectionObserver(entries => {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting || entry.intersectionRatio > 0) {
+//       loadNextChunk();
+//     }
+//   });
+// }, { threshold: peek });
 
 fetchData().then(data => {
   buildCardElements(data);
-  
-  // After appending the initial data, find and observe the last item
-  const lastItem = document.querySelector('.item:last-child');
-  observer.observe(lastItem);
-});
+})
+
+//   const lastItem = document.querySelector('.item:last-child');
+//   observer.observe(lastItem);
+// });
+
+
+// function loadNextChunk() {
+//   start += numArticlesLoaded;
+//   end += numArticlesLoaded;
+//   setTimeout(() => {
+//     fetchData().then(data => {
+//       if (data.length > 0) {
+
+//         buildCardElements(data);
+
+//         const lastItem = document.querySelector('.item:last-child');
+//         observer.observe(lastItem);
+//       } else {
+
+//         observer.disconnect();
+//       }
+//     });
+//   }, chunkDelay);
+// }
 
 
 
-function loadNextChunk() {
-  start += numArticlesLoaded;
-  end += numArticlesLoaded;
-  setTimeout(() => {
-    fetchData().then(data => {
-      if (data.length > 0) {
-
-        buildCardElements(data);
-
-        // After appending the new items, find and observe the new last item
-        const lastItem = document.querySelector('.item:last-child');
-        observer.observe(lastItem);
-      } else {
-        // If there is no more data, disconnect the observer
-        observer.disconnect();
-      }
-    });
-  }, chunkDelay);
-}
 
 // add https and filter out alternative prefixes
 function addHttps(x) {
@@ -82,7 +82,7 @@ function buildCardElements (data) {
   } 
   else {
     data.forEach((result, index) => {
-      const { date, authorLink, authorName, title, para, paraLink, paraLinkWord, highlightWords } = result;
+      const { date, authorLink, authorName, image, title, para, paraLink, paraLinkWord, highlightWords } = result;
       const dateHtml = date ? `<h3>${date}</h3>` : '';
       const titleHtml = title ? title : '';
 
@@ -103,7 +103,7 @@ function buildCardElements (data) {
         wordsArray.forEach(word => {
           if (word && paraSpan.includes(word)) {
             if (word === paraLinkWordHtml) {
-              const ctaHtml = ` <a href="${paraLinkUrlHtml}" target="_blank">${word}</a>`;
+              const ctaHtml = ` <a class="paraLinkWordCol" href="${paraLinkUrlHtml}" target="_blank">${word}</a>`;
               paraSpan = paraSpan.replace(new RegExp(word, 'ig'), ctaHtml);
             } else {
               const ctaHtml = ` <span class="highlight">${word}</span>`;
@@ -113,6 +113,8 @@ function buildCardElements (data) {
         });
       }
       paraSpan = paraSpan || paraHtml;
+
+      const hasImage = image ? `<img src="${image}" alt="${titleHtml}" />` : "";
 
       const hasAuthor = authorLinkUrlHtml && `<a class="authorLink" href="${authorLinkUrlHtml}" target="_blank">@${truncatedLinkText}</a>`;
 
@@ -126,7 +128,8 @@ function buildCardElements (data) {
               <h2 class="title">${titleHtml}</h2>
             </div>
             
-            <p>${paraSpan}</p>
+            ${hasImage}
+            <p class="paraBg">${paraSpan}</p>
 
             <div class="link">
               ${hasAuthor}
@@ -166,17 +169,20 @@ function buildCardElements (data) {
   // 
 
   // change background page colour
-  let isDarkTheme = true;
-  let isUserToggled = true; // variable to track manual theme toggle
+  let isDarkTheme = false;
+  let isUserToggled = false; // variable to track manual theme toggle
   let themeInterval; // variable to store the interval
   
   const body = document.body;
   const themeBtn = document.getElementById('theme');
   const logo = document.getElementById('logo');
+  const logoSpan = document.getElementById('hyper');
   const outerElements = document.getElementsByClassName('outer');
   const contentElements = document.getElementsByClassName('content');
   const dataElements = document.getElementsByClassName('data');
+  const paraBgEl = document.getElementsByClassName('paraBg');
   const spanHighightElements = document.getElementsByClassName('highlight');
+  const paraLinkWordColEl = document.getElementsByClassName('paraLinkWordCol');
   const h2TitleElements = document.getElementsByClassName('title');
   const authorLinkElement = document.getElementsByClassName('authorLink');
 
@@ -200,7 +206,7 @@ function buildCardElements (data) {
   const lightThemeBg = "#f1f1e9";
   const lightThemeBlend = "#f1f1e9";
   
-  const yellowHighlightBg = "#fefd00";
+  const yellowHighlightBg = "#ffff0055";
   
   function applyTheme(isDarkTheme){
     body.style.backgroundColor = isDarkTheme ? lightThemeBg : darkThemeBg;
@@ -209,36 +215,47 @@ function buildCardElements (data) {
 
     for (let i = 0; i < minLength; i++) {
       const outer = outerElements[i];
-      const content = contentElements[i];
+      // const content = contentElements[i];
+      // const dataContainer = dataElements[i];
+      const paraBg = paraBgEl[i];
       const highlight = spanHighightElements[i];
+      const paraLinkWordCol = paraLinkWordColEl[i];
       const h2 = h2TitleElements[i];
       const authorLinkCol = authorLinkElement[i];
-      const dataContainer = dataElements[i];
 
       if (outer) {
-        outer.style.backgroundColor = isDarkTheme ? lightThemeBg : darkThemeBg;
+        // outer.style.backgroundColor = isDarkTheme ? lightThemeBg : darkThemeBg;
         outer.style.color = !isDarkTheme ? lightThemeBg : darkThemeBg;
       }
 
-      if (content) {
-        content.style.backgroundColor = isDarkTheme ? lightThemeBlend : darkThemeBlend;
-      }
+      // if (content) {
+      //   content.style.backgroundColor = isDarkTheme ? lightThemeBlend : darkThemeBlend;
+      // }
       
-      if (dataContainer) {
-        dataContainer.style.backgroundColor = isDarkTheme ? "rgba(255, 255, 255, 0.2)" : "transparent";
+      // if (dataContainer) {
+      //   dataContainer.style.backgroundColor = isDarkTheme ? "rgba(255, 255, 255, 0.2)" : "transparent";
+      // }
+      
+      if (paraBg) {
+        paraBg.style.backgroundColor = isDarkTheme ? "#f1f1e9" : "#21212455";
       }
 
       if (h2) {
-        h2.style.backgroundColor = !isDarkTheme ? "#111" : "#000";
+        h2.style.backgroundColor = !isDarkTheme ? "#1D1D20" : "#1D1D20";
         h2.style.color = !isDarkTheme ? "#fff" : "#fff";
       }
 
       if (highlight) {
-        highlight.style.backgroundColor = isDarkTheme ? yellowHighlightBg : "#111";
-        highlight.style.color = isDarkTheme ? "#f64056" : yellowHighlightBg;
+        highlight.style.backgroundColor = isDarkTheme ? "#ffff00" : "#fdfd01";
+        highlight.style.color = isDarkTheme ? "#111" : "#111";
       }
       
-
+      if (paraLinkWordCol) {
+        // paraLinkWordCol.style.backgroundColor = isDarkTheme ? "#ffff00" : "#55ff02";
+        paraLinkWordCol.style.color = isDarkTheme ? "#ff0200" : "#3B82F6";
+        paraLinkWordCol.style.borderBottom = isDarkTheme ? "3px solid red" : "3px solid #3B82F6";
+      }
+      
       if (authorLinkCol) {
         authorLinkCol.style.color = isDarkTheme ? "#000" : "#fff";
       }
@@ -252,8 +269,9 @@ function buildCardElements (data) {
     // logo.style.color = !isDarkTheme ? "#212124" : "#f64056";
     // logo.style.textShadow = !isDarkTheme ? "-7px -1px 1px #f1f1f111, 1px -1px 1px #f1f1f111, 7px 1px 1px #f1f1f111, 1px 1px 1px #f1f1f111" : "-7px -1px 1px #f1f1f1, 1px -1px 1px #f1f1f1, 7px 1px 1px #f1f1f1, 1px 1px 1px #f1f1f1";
 
-    logo.style.color = !isDarkTheme ? "#f64056" : "#f64056";
-    logo.style.textShadow = !isDarkTheme ? "-7px -1px 1px #f1f1f1, 1px -1px 1px #f1f1f1, 7px 1px 1px #f1f1f1, 1px 1px 1px #f1f1f1" : "-7px -1px 1px #f1f1f1, 1px -1px 1px #f1f1f1, 7px 1px 1px #f1f1f1, 1px 1px 1px #f1f1f1";
+    logo.style.color = !isDarkTheme ? "#ff0200" : "#ff0200";
+    logoSpan.style.color = !isDarkTheme ? "#fff" : "#111";
+    // logo.style.textShadow = !isDarkTheme ? "-7px -1px 1px #f1f1f1, 1px -1px 1px #f1f1f1, 7px 1px 1px #f1f1f1, 1px 1px 1px #f1f1f1" : "-7px -1px 1px #f1f1f1, 1px -1px 1px #f1f1f1, 7px 1px 1px #f1f1f1, 1px 1px 1px #f1f1f1";
 
     const themeIcon = isDarkTheme ? "moon" : "sun";
     updateThemeIcon(themeIcon);
@@ -278,6 +296,7 @@ function buildCardElements (data) {
 //
 //
 
+
   // function to reset the theme interval
   function resetThemeInterval() {
     // clear the interval if it was previously set
@@ -297,6 +316,8 @@ function buildCardElements (data) {
 
   // initialize the interval
   resetThemeInterval();
+
+
 
   // 
   // 
