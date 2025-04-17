@@ -1,7 +1,7 @@
 ## blog
 ### plus pixel art
 
-[LIVE SITE](https://blog.mattheweq.com)
+
 
 ![ALT:preview](preview.png)
 
