@@ -98,6 +98,7 @@ h1{
   /* text-shadow: -7px -1px 1px #f1f1f111, 1px -1px 1px #f1f1f111, 7px 1px 1px #f1f1f111, 1px 1px 1px #f1f1f111 */
 }
 
+
 /* search input container */
 
 /* 
@@ -242,6 +243,7 @@ span.highlight {
   height: 20px;
   color: black;
 }
+
 
 @media screen and (min-width: 768px){
   /* #searchInput{
